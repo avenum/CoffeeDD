@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+        var Temp = [{ type: 'checkbox', name: 'CB' }, { type: 'text', name: 'TB' }, { type: 'dropdown', name: 'DDL', values: [{ value: 1, text: 'hello' }, { value: 2, text: 'world' }, { value: 3, text: 'yankeees' }] }];
+        var Temp1 = [];
+        function check1() {
+            $(".up").each(function () {
+                var key = $(this).attr("data-name");
+                var value = $(this).is(":checkbox") ? $(this).prop("checked") : $(this).val();
+
+                Temp1.push({ K: key, Val: value });
+
+
+            });
+
+
+
+            
+
+                console.log(Temp1);
+            
+
+
+        }
+
+        function render(func, par) {
+
+            var div = $("#Container");
+            div.empty();
+
+            func(par);
+
+            $(Temp).each(function () {
+                var item = this;
+                var htmlka = $("<div><label>" + item.name + "</label><br></div>")
+
+                switch (item.type) {
+                    case "checkbox":
+                        htmlka.append("<input type='checkbox' class='up' data-name='" + item.name + "'/> " + item.name);
+                        break;
+                    case "text":
+                        htmlka.append("<input type='text' class='up' data-name='" + item.name + "'/> ");
+                        break;
+                    case "dropdown":
+                        var select = $("<select  class='up' data-name='" + item.name + "'></select>");
+                        for (var key in item.values) {
+                            var opt = item.values[key];
+                            select.append("<option value='" + opt.value + "' >" + opt.text + "</option>")
+                        }
+                        htmlka.append(select);
+                        break;
+
+                }
+
+                div.append(htmlka);
+            });
+
+
+
+
+        }
+
+        $().ready(function () {
+            render(alert, 'hello');
+        });
+    </script>
+</head>
+<body>
+
+
+
+    <div id="Container">
+
+
+    </div>
+    <a href="#" onclick="check1(); return false;">Go</a>
+
+</body>
+</html>

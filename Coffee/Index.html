@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <script src="Scripts/jquery-3.1.1.js"></script>
+    <script src="Scripts/CoffeJS.js"></script>
+    <script src="Scripts/hogan-3.0.1.js"></script>
+    <script src="bootstrap/bootstrap.js"></script>
+    <script>
+        $().ready(function () {
+
+            Coffee.InitCombo();
+            Coffee.GetAllCoffeLovers();
+
+            var timerId = setInterval(function () {
+                Coffee.GetAllCoffeLovers();
+            }, 60000);
+
+        });
+
+    </script>
+    <link href="bootstrap/bootstrap.css" rel="stylesheet" />
+    <title>Клуб любителей кофе</title>
+    <meta charset="utf-8" />
+    <style>
+        .shadowtext {
+            text-shadow: 2px 2px 2px black, 1px 1px 1px green; /* Параметры тени */
+            color: white; /* Белый цвет текста */
+            /* Размер надписи */
+        }
+
+        .box {
+            white-space: nowrap;
+        }
+
+            .box div {
+                display: block;
+                float: left;
+                border: 5px solid white;
+                width: 90px;
+                height: 90px;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+
+
+        #Main {
+            max-width: 660px;
+        }
+
+        #PinPad {
+            width: 270px;
+            position: fixed;
+            border: 2px solid white;
+            left: 50%;
+            margin-left: -150px;
+            top: 50%;
+            margin-top: -200px;
+            opacity: 1;
+        }
+
+            #PinPad div.pad {
+                text-align: center;
+                padding-top: 35px;
+                width: 88px;
+                height: 55px;
+                color:azure;
+                display: block;
+                float: left;
+                border: 1px solid white;
+                background-color: silver;
+                font-size: 50px;
+                cursor: pointer;
+                border-radius: 10px;
+            }
+
+        #PinPadArea {
+            position: fixed;
+            display: none;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: aliceblue;
+            z-index: 1;
+            opacity: 0.9;
+        }
+
+        .passTb {
+            width: 99%;
+            padding: 0px !important;
+            margin: 0px !important;
+            text-align: center;
+        }
+
+        .pass {
+            text-align: center;
+            width: 100%;
+        }
+
+        #TimeBox {
+        }
+
+
+        .secure {
+            border: #ff6a00 1px solid !important;
+            margin:4px !important;
+        }
+    </style>
+</head>
+<body>
+    <table style="width:100%; max-width:600px;">
+        <tr>
+            <td>
+                <input type="text" name="username" autocomplete="off" data-items="20">
+            </td>
+            <td align="right"><span id="TimeBox"></span></td>
+        </tr>
+    </table>
+    <div style="display:none; width:90px;height:90px; position:absolute; border:3px palegreen solid;" onclick="Coffee.Pin(Coffee.AddCoffeeLover); return false;" id="photo"><img src="Content/Addbtn.png" /></div>
+
+    <div id="Main" class="shadowtext box" onselectstart="return false">
+
+
+    </div>
+    <div id="PinPadArea" onselectstart="return false">
+        <div id="PinPad">
+            <div class="pass"><input type="password" disabled class="passTb" /></div>
+            <div class="pad">1</div>
+            <div class="pad">2</div>
+            <div class="pad">3</div>
+            <div class="pad">4</div>
+            <div class="pad">5</div>
+            <div class="pad">6</div>
+            <div class="pad">7</div>
+            <div class="pad">8</div>
+            <div class="pad">9</div>
+            <div class="pad" style="color:salmon"><<</div>
+            <div class="pad">0</div>
+            <div class="pad" style="color:palegreen">>></div>
+        </div>
+    </div>
+    
+
+
+</body>
+
+</html>
